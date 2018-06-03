@@ -1,0 +1,8 @@
+<JFrame type=main text=主窗口  color=FFFFFF display=visible>{
+	<JLabel>{aaaaa}
+}
+<JFrame text=副窗口 display=visible>{
+	<JPanel color=FFFFFF>{}
+	<JScrollBar>{}
+}
+<JFrame display=visible>{}

@@ -1,0 +1,31 @@
+通过继承attribute.attribute抽象类，实现容器类的新的自定义属性。
+
+* attribute抽象类保存了自己的属性名称和属性值
+
+* 构造函数attribute(String name, String value)
+例子：
+	public Attr_display(String value) {
+		super("text", value);	//属性的名称为text
+	}
+	
+	protected Attr_display(String name, String value) {
+		super(name, value);
+	}
+	
+* 子类声明规则：
+
+	public class Attr_[新的类型名] extends Attribute<String, String>
+	
+注意：属性名称是区分大小写的。使用模板而不再父类中直接声明是为了以后的扩充做准备。
+
+* 通过重写modify方法实现自定义属性
+例子：
+	@Override
+	public void modify(Container con, String tip) {
+		try{
+			((JComponent)con).setToolTipText(tip);
+		}catch(ClassCastException e){
+			e.printStackTrace();
+		}
+	}
+
