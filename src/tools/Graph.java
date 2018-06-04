@@ -39,16 +39,16 @@ public class Graph<T,E> {
 		last.linkTo(next, e);
 	}
 	
-	//设置开始位置
-	public void setStartPoint(T start) throws Exception{
+	//设置开始位置(没有这个开始位置就指向null)
+	public void setStartPoint(T start){
 		if(nodes.containsKey(start)){
 			this.index = start;
 		}else{
-			throw new Exception("没有这个结点!");
+			this.index = null;
 		}
 	}
 	
-	//移动(错误指向null)
+	//移动(错误指向null,在错误状态下不可以移动)
 	public void move(E outEdge){
 		if(index == null);
 		else{
