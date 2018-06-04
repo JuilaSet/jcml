@@ -7,7 +7,7 @@ import java.util.Map;
 public class Node<T,E>{
 	protected final T state;	//结点的下标
 	protected Map<E,Edge<T,E>> outEdges = new HashMap<E,Edge<T,E>>();	//出去的边
-
+	
 	public Node(T state){
 		this.state = state;
 	}

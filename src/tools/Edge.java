@@ -4,7 +4,6 @@ package tools;
 public class Edge<T,E>{
 	protected final E state;	//边的编号
 	protected Node<T,E> next;		//指向下个结点
-	protected T pushType = null;	//压栈元素的标记
 	
 	public Edge(E state){
 		this.state = state;
