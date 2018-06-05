@@ -12,7 +12,6 @@ public class ContainerBuilder {
 		jf.getContentPane().setBackground(Color.GRAY);
 		jf.setLayout(new FlowLayout());
 		jf.setSize(300,200);
-		jf.setLocationRelativeTo(null);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return jf;
 	}

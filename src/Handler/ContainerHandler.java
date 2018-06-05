@@ -19,7 +19,7 @@ public class ContainerHandler {
 	}
 	
 	//修改容器属性，通过传入记录集
-	public void modify(Container con,ContainerAttributesRecorder car){
+	public void modify(Container con,ContainerAttrRecorder car){
 		//遍历已有属性
 		String[] attributes = car.getAttributeNames(con);
 		if(attributes==null)return;
@@ -28,17 +28,20 @@ public class ContainerHandler {
 				String value = car.getAttribute(con, content);
 				//构造Attribute对象
 				try {
+					//得到class
 					Class<?> attr 
 						= Class.forName("attribute.Attr_" + content);
 					
+					//得到构造器
 					Constructor<?> constr
 						= attr.getConstructor(String.class,String.class);
 					
+					//构造对象
 					Attribute<?, ?> att
 						= (Attribute<?, ?>) constr.newInstance(content, value);
 					
 					//策略模式
-					att.modify(con, value);
+					att.modify(con, car, value);
 					
 					//当有错时记录
 					if(!att.getErrMsg().equals("")){
@@ -56,7 +59,7 @@ public class ContainerHandler {
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
 					//没有这个属性对象
-					e.printStackTrace();
+				//	e.printStackTrace();
 				}
 			}
 		}

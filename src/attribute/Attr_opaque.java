@@ -3,6 +3,8 @@ package attribute;
 import java.awt.Container;
 import javax.swing.JComponent;
 
+import Handler.ContainerAttrRecorder;
+
 public class Attr_opaque extends Attribute<String, String> {
 
 	public Attr_opaque(String value) {
@@ -14,7 +16,7 @@ public class Attr_opaque extends Attribute<String, String> {
 	}
 
 	@Override
-	public void modify(Container con, String isOpaque) {
+	public void modify(Container con, ContainerAttrRecorder car, String isOpaque) {
 		try{
 			Boolean b = Boolean.parseBoolean(isOpaque);
 			((JComponent)con).setOpaque(b);

@@ -3,6 +3,7 @@ package attribute;
 import java.awt.Container;
 
 import Ass.ErrHandler;
+import Handler.ContainerAttrRecorder;
 
 public abstract class Attribute<K,V> {
 	private final K name;	//属性名称不可更改
@@ -27,5 +28,5 @@ public abstract class Attribute<K,V> {
 		return value;
 	}
 
-	public abstract void modify(Container con, String text);
+	public abstract void modify(Container con, ContainerAttrRecorder car, String layoutType);
 }

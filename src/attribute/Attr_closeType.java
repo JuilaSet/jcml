@@ -4,6 +4,8 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import Handler.ContainerAttrRecorder;
+
 public class Attr_closeType extends Attribute<String, String> {
 	
 	public Attr_closeType(String value) {
@@ -15,7 +17,7 @@ public class Attr_closeType extends Attribute<String, String> {
 	}
 
 	@Override
-	public void modify(Container con, String text) {
+	public void modify(Container con, ContainerAttrRecorder car, String text) {
 		switch(text){
 			case "main":
 				if(JFrame.class.equals(con.getClass())){

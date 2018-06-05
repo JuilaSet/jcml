@@ -1,8 +1,16 @@
-<JFrame display=visible closeType=others layerout=gridlayout>
+<JFrame display=visible closeType=others layerout=GridLayout rows=3 col=1 size=500*400>
 {
-	<JButton color=ffffff>{一个按钮}
-	<JButton color=ffffff>{一个按钮}
-	<JButton color=ffffff>{一个按钮}
-	<JButton color=ffffff>{一个按钮}
-	<JButton color=ffffff>{一个按钮}
+	<JPanel layerout=GridLayout rows=1 cols = 4 color=CCCCCC>{
+		<JPanel color=CCCCCC>{<JLabel>{1}}
+		<JPanel color=888888>{<JLabel>{2}}
+		<JPanel color=444444>{<JLabel color=ffffff>{3}}
+		<JPanel color=000000>{<JLabel color=ffffff>{4}}
+	}
+	<JPanel color=0000dd>{}
+	<JPanel layerout=GridLayout rows=1 cols = 4 color=990088>{
+		<JPanel color=ff0000>{按钮1}
+		<JPanel color=cc0000>{按钮1}
+		<JPanel color=880000>{按钮1}
+		<JPanel color=440000>{按钮1}
+	}
 }

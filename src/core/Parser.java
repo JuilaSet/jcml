@@ -6,7 +6,7 @@ import java.awt.Container;
 import java.util.Stack;
 
 import Ass.ErrHandler;
-import Handler.ContainerAttributesRecorder;
+import Handler.ContainerAttrRecorder;
 import Handler.ContainerBuilder;
 import Handler.ContainerHandler;
 import attribute.Attr_text;
@@ -26,7 +26,7 @@ public class Parser {
 	private AdvancedLexer lexer;
 	private Stack<Container> conts = new Stack<Container>();
 	private Stack<String> tagNames = new Stack<String>();	//存放解析信息
-	ContainerAttributesRecorder car = new ContainerAttributesRecorder(); //存放容器信息
+	ContainerAttrRecorder car = new ContainerAttrRecorder(); //存放容器信息
 	
 	ErrHandler errh = new ErrHandler();
 	
@@ -36,6 +36,7 @@ public class Parser {
 		if(con == null){
 			out.println("ERROR_LOG:"+errh.getErrMsg());
 		}else{
+		//	jf.setLocationRelativeTo(null);
 		}
 	}
 	
@@ -44,7 +45,6 @@ public class Parser {
 		if(!conts.isEmpty() && !errh.hasErr()){
 			Container con = conts.pop();
 			
-			//?????为什么只有顶层容器才会受display影响
 			modify(con);	//对容器进行修改
 
 		//	out.println("===GET_CONTAINE:"+tagNames.pop());
@@ -75,7 +75,7 @@ public class Parser {
 
 			modify(subCont);	//修改容器属性
 			if(!content.equals("")){
-				new Attr_text(content).modify(subCont,content);	//设置容器显示字符
+				new Attr_text(content).modify(subCont,car,content);	//设置容器显示字符
 			}
 			
 			Container superCont = conts.pop();

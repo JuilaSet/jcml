@@ -5,6 +5,8 @@ import java.awt.Container;
 import javax.swing.AbstractButton;
 import javax.swing.JLabel;
 
+import Handler.ContainerAttrRecorder;
+
 public class Attr_text extends Attribute<String, String> {
 
 	public Attr_text(String value) {
@@ -16,7 +18,7 @@ public class Attr_text extends Attribute<String, String> {
 	}
 
 	@Override
-	public void modify(Container con, String text) {
+	public void modify(Container con, ContainerAttrRecorder car, String text) {
 		if(JLabel.class.equals(con.getClass())){
 			((JLabel)con).setText(text);
 		}else{

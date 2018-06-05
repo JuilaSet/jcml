@@ -2,6 +2,8 @@ package attribute;
 
 import java.awt.Container;
 
+import Handler.ContainerAttrRecorder;
+
 public class Attr_display extends Attribute<String, String> {
 
 	public Attr_display(String value) {
@@ -13,7 +15,7 @@ public class Attr_display extends Attribute<String, String> {
 	}
 
 	@Override
-	public void modify(Container con, String b) {
+	public void modify(Container con, ContainerAttrRecorder car, String b) {
 		switch(b){
 			case "none":
 				con.setVisible(false);
@@ -26,5 +28,5 @@ public class Attr_display extends Attribute<String, String> {
 				con.setVisible(false);
 				break;
 		}
-	}	
+	}
 }

@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import Handler.ContainerAttrRecorder;
 
 public class Attr_color extends Attribute<String, String> {
 
@@ -16,11 +19,13 @@ public class Attr_color extends Attribute<String, String> {
 	}
 
 	@Override
-	public void modify(Container con, String rgbstr16) {
+	public void modify(Container con, ContainerAttrRecorder car, String rgbstr16) {
 		if(rgbstr16.matches("[0-9AaBbCcDdEeFf]{6}")){
 			Color color = new Color(Integer.parseInt(rgbstr16,16));
 			if(JFrame.class.equals(con.getClass())){
 				((JFrame)con).getContentPane().setBackground(color);
+			}else if(JLabel.class.equals(con.getClass())){
+				((JLabel)con).setForeground(color);
 			}else{
 				con.setBackground(color);
 			}
