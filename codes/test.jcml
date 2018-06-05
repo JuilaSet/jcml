@@ -1,13 +1,13 @@
-<JFrame display=visible closeType=others layerout=GridLayout rows=3 col=1 size=500*400>
+<JFrame display=visible closeType=others layout=GridLayout rows=3 col=1 size=500*400>
 {
-	<JPanel layerout=GridLayout rows=1 cols = 4 color=CCCCCC>{
+	<JPanel layout=GridLayout rows=1 cols = 4 color=CCCCCC>{
 		<JPanel color=CCCCCC>{<JLabel>{1}}
 		<JPanel color=888888>{<JLabel>{2}}
 		<JPanel color=444444>{<JLabel color=ffffff>{3}}
 		<JPanel color=000000>{<JLabel color=ffffff>{4}}
 	}
 	<JPanel color=0000dd>{}
-	<JPanel layerout=GridLayout rows=1 cols = 4 color=990088>{
+	<JPanel layout=GridLayout rows=1 cols = 4 color=990088>{
 		<JPanel color=ff0000>{°´Å¥1}
 		<JPanel color=cc0000>{°´Å¥1}
 		<JPanel color=880000>{°´Å¥1}
