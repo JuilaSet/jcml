@@ -332,31 +332,4 @@ public class InputSystem
 		return new String(buffer, codeType);
 	}
 
-	//文件下次读取时是否读取完毕
-	public boolean isEOFInNextRound()
-	{
-		if(isEmptyFile())return true;
-		if(!isEOF){
-			int n = nextc;
-			do {
-				n++;
-			}while(buffer[n] != SEPERATOR && buffer[n] != EOFPOINT);
-			
-			//读到结束点,文件读取完毕
-			if(buffer[n] == EOFPOINT) {
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			return true;
-		}
-	}
-	
-	//文件是否读取完毕
-	public boolean isEOF()
-	{
-		if(isEmptyFile())return true;
-		return isEOF;
-	}
 }

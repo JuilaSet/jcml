@@ -78,6 +78,7 @@ public class Lexer {
 	//是否结束
 	private boolean iseof=false;
 	public boolean isEof(){
+		//??
 		if(		index==datas.size()-1	||
 				datas.size()==0			||
 				get().charAt(0)==InputSystem.EOFPOINT)	//在读到文件结尾符时算结束

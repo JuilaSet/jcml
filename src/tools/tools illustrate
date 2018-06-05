@@ -4,7 +4,7 @@
 	例子：Pda<Integer,Character> pda = new Pda<Integer,Character>();
 	
 2.构造结构
-	通过add函数构造下推自动机的结构。
+	通过add函数构造下推自动机的结构。第三个参数传入Pda.Action枚举类型。
 	例子：
 		pda.add(0, '(', Action.push, 1);
 		pda.add(0, '#', Action.accept);
@@ -12,7 +12,7 @@
 		pda.add(1, ')', Action.pop);
 
 3.设置初始位置
-	设置初始位置的状。
+	设置初始位置的状态。
 	例子：
 		pda.setStart(0);
 

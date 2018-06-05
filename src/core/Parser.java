@@ -23,7 +23,7 @@ public class Parser {
 	}
 	
 	private InputSystem input;
-	private Lexer lexer;
+	private AdvancedLexer lexer;
 	private Stack<Container> conts = new Stack<Container>();
 	private Stack<String> tagNames = new Stack<String>();	//存放解析信息
 	ContainerAttributesRecorder car = new ContainerAttributesRecorder(); //存放容器信息
@@ -36,7 +36,6 @@ public class Parser {
 		if(con == null){
 			out.println("ERROR_LOG:"+errh.getErrMsg());
 		}else{
-		//	con.setVisible(true);
 		}
 	}
 	
@@ -48,7 +47,7 @@ public class Parser {
 			//?????为什么只有顶层容器才会受display影响
 			modify(con);	//对容器进行修改
 
-			out.println("===GET_CONTAINE:"+tagNames.pop());
+		//	out.println("===GET_CONTAINE:"+tagNames.pop());
 			
 			return con;
 		}else{
@@ -72,7 +71,7 @@ public class Parser {
 		if(tagNames.size() > 1 && !errh.hasErr()){
 			Container subCont = conts.pop();
 			String str = tagNames.pop();
-			out.println("GET_SUB:" + str);
+		//	out.println("GET_SUB:" + str);
 
 			modify(subCont);	//修改容器属性
 			if(!content.equals("")){
@@ -81,10 +80,10 @@ public class Parser {
 			
 			Container superCont = conts.pop();
 			String superStr = tagNames.pop();
-			out.println("GET_SIPER:" + superStr);
+		//	out.println("GET_SIPER:" + superStr);
 			
 			superCont.add(subCont);
-			out.println("ADD:" + str +" TO "+ superStr);
+		//	out.println("ADD:" + str +" TO "+ superStr);
 
 			conts.push(superCont);
 			tagNames.push("("+superStr.substring(0)+":"+str);
@@ -101,17 +100,17 @@ public class Parser {
 			conts.push(con);
 			tagNames.push(tagName);
 		}
-		out.println("CREATE_CONTAINER:"+tagName);
-		out.println("CONTAINER:"+con);
+	//	out.println("CREATE_CONTAINER:"+tagName);
+	//	out.println("CONTAINER:"+con);
 	}
 	
 	//记录容器属性
 	private void recordAttribute(Container con,String name, String value){
 		car.putAttributes(con, name, value);
 
-		out.println("PUT_CON:"+con);
-		out.println("PUT_ATTRIBUTE:"+name);
-		out.println("PUT_ATTRIVALUE:"+value);
+	//	out.println("PUT_CON:"+con);
+	//	out.println("PUT_ATTRIBUTE:"+name);
+	//	out.println("PUT_ATTRIVALUE:"+value);
 	}
 	
 	//content -> null || string + string + ...(遇到'}'为止)
@@ -131,14 +130,14 @@ public class Parser {
 				str+=lexer.get();
 			}
 		}
-		out.println("content:"+str);
+	//	out.println("content:"+str);
 		construct(str);
 	}
 	
 	//tagState -> string + attributeList
 	private void tagState(){
 		String tagName = lexer.get();
-		out.println("tagState:"+tagName);
+	//	out.println("tagState:"+tagName);
 		try {
 			lexer.next();
 		} catch (Exception e) {
@@ -170,18 +169,27 @@ public class Parser {
 	//attributteName
 	private String _ATTRIBUTNAME_="";
 	private void attributteName(){
-		_ATTRIBUTNAME_ = lexer.getNext();
+		try {
+			_ATTRIBUTNAME_ = lexer.getNext();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		out.println("attributteName:"+_ATTRIBUTNAME_);
+	//	out.println("attributteName:"+_ATTRIBUTNAME_);
 	}
 
 	//attributteValue
 	String _ATTRIBUVALUE_ = "";
 	private void attributteValue(){
-		_ATTRIBUVALUE_ = lexer.getNext();
+		try {
+			_ATTRIBUVALUE_ = lexer.getNext();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		recordAttribute(_CONTAINER_,_ATTRIBUTNAME_,_ATTRIBUVALUE_);
 		
-		out.println("attributteValue:"+_ATTRIBUVALUE_);
+	//	out.println("attributteValue:"+_ATTRIBUVALUE_);
 		_ATTRIBUTNAME_ = _ATTRIBUVALUE_ = "";
 	}
 	
@@ -189,9 +197,9 @@ public class Parser {
 	private void equ(){
 		char c = lexer.get().charAt(0);
 		if(c == '='){
-			out.println("equ:"+c);
+	//		out.println("equ:"+c);
 		}else{
-			out.println("err-lp:"+c);
+	//		out.println("err-lp:"+c);
 			errh.reportErr("此处应该是'='符号");
 		}
 		try {
@@ -216,9 +224,9 @@ public class Parser {
 	private void lp(){
 		char c = lexer.get().charAt(0);
 		if(c == '{'){
-			out.println("lp:"+c);
+	//		out.println("lp:"+c);
 		}else{
-			out.println("err-lp:"+c);
+	//		out.println("err-lp:"+c);
 			errh.reportErr("此处应该是'{'符号");
 		}
 		try {
@@ -232,9 +240,9 @@ public class Parser {
 	private void rp(){
 		char c = lexer.get().charAt(0);
 		if(c == '}'){
-			out.println("rp:"+c);
+	//		out.println("rp:"+c);
 		}else{
-			out.println("err-rp:"+c);
+	//		out.println("err-rp:"+c);
 			errh.reportErr("此处应该是'}'符号");
 		}
 		try {
@@ -255,9 +263,9 @@ public class Parser {
 	private void rlp(){
 		char c = lexer.get().charAt(0);
 		if(c == '<'){
-			out.println("rlp:"+c);
+	//		out.println("rlp:"+c);
 		}else{
-			out.println("err-rlp:"+c);
+	//		out.println("err-rlp:"+c);
 			errh.reportErr("此处应该是'<'符号");
 		}
 		try {
@@ -271,9 +279,9 @@ public class Parser {
 	private void rrp(){
 		char c = lexer.get().charAt(0);
 		if(c == '>'){
-			out.println("rrp:"+c);
+	//		out.println("rrp:"+c);
 		}else{
-			out.println("err-rrp:"+c);
+	//		out.println("err-rrp:"+c);
 			errh.reportErr("此处应该是'>'符号");
 		}
 		try {
@@ -306,7 +314,9 @@ public class Parser {
 	
 	public Parser(String fname){
 		input = InputSystemConstructor.construct(fname);
-		lexer = new Lexer(input);
+		lexer = new AdvancedLexer(input);
+		
+	//	lexer = new Lexer(input);
 		analyze();
 	}
 }
